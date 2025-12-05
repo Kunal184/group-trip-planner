@@ -5,6 +5,8 @@ import { Server } from "socket.io";
 import http from "http";
 import authRoutes from "./routes/authRoutes.js";
 import tripRoutes from "./routes/tripRoutes.js";
+import itineraryRoutes from "./routes/itineraryRoutes.js";
+
 
 
 
@@ -25,6 +27,8 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/trips", tripRoutes);
+app.use("/api/itinerary", itineraryRoutes);
+
 
 
 // Create HTTP server

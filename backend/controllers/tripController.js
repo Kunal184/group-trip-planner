@@ -4,14 +4,19 @@ import User from "../models/User.js";
 // Create Trip
 export const createTrip = async (req, res) => {
     try {
-        const { name, destination } = req.body;
+        const { name, destination, startDate } = req.body;
 
-        // generate 6-digit trip code
+        if (!name || !destination || !startDate) {
+            return res.status(400).json({ message: "Name, destination, and startDate are required" });
+        }
+
+        // Generate 6-digit trip code
         const code = Math.random().toString().slice(2, 8);
 
         const trip = await Trip.create({
             name,
             destination,
+            startDate,
             code,
             createdBy: req.user.id,
             members: [req.user.id]
